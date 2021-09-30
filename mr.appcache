@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# PLACEHOLDER
+/clock/charlotte-olivia-red.png
+/clock/charlotte-olivia-black.png
+/clock/digital-7-mono-italic.ttf
+/clock/digital-7-mono-italic.ttf
+/clock/digital-7-italic.ttf
+/clock/clock2.html
+
+NETWORK:
+login.asp
+
+FALLBACK:
+#/html/ /offline.html

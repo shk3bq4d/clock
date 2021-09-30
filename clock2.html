@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html manifest="mr.appcache" style="display:block; height:100%; width: 100%; margin:0; padding:0">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta charset="UTF-8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!--
+<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+
+-->
+<meta content='True' name='HandheldFriendly' />
+<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+<link rel="manifest" href="manifest.json">
+		<title>Clock</title>
+		<style type="text/css">
+			/* Customizable font and colors */
+			body, span, div {
+
+				overflow: hidden;
+			-webkit-user-select: none;  
+			  -moz-user-select: none;    
+			  -ms-user-select: none;      
+			  user-select: none;
+			}
+			@font-face {
+				font-family: "My Custom Font";
+			    src: url(digital-7-italic.ttf) format("truetype"); 
+				}
+			@font-face {
+				font-family: "My Custom Font Mono";
+			    src: url(digital-7-mono-italic.ttf) format("truetype"); 
+				}
+			html {
+				background: #000000;
+			}
+			.firstdigit {
+				font-family: "My Custom Font", sans-serif;
+			}
+			.otherdigit {
+				font-family: "My Custom Font Mono", sans-serif;
+			}
+			.hidden { visibility: hidden; }
+			.poupinoured   { background-image: url("charlotte-olivia-red.png");  }
+			.poupinoublack { background-image: url("charlotte-olivia-black.png");  }
+			#poupinou {
+				/* background-image: url(data:image/png;base64,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); */
+				background-size: cover;
+				background-repeat: no-repeat;
+					padding: 0 0.05em;
+				/* filter: opacity(.2); */
+			}
+			.clocktextred {   color: #FF0000; }
+			.clocktextblack { color: #000000; }
+			#clocktext {
+				/* font-weight: bold; */
+			}
+		</style>
+	</head>
+	
+	<body style="display:table; width:100%; height:100%; margin:0; padding:0">
+		<div style="display:table-cell; width:100%; height:100%; text-align:center; vertical-align:middle">
+			<span id="clocktext" class="clocktextred" style="font-size:24pt; font-kerning:none"></span>
+		</div>
+		<span class="hidden poupinoured"></span>
+		<span class="hidden poupinoublack"></span>
+		
+		<script type="text/javascript">
+			"use strict";
+			
+			var textElem = document.getElementById("clocktext");
+			var curFontSize = 24;  // Do not change
+			var _red = 1;
+
+			var default_rmin = 0.02;
+			var default_rmax = 0.8;
+			
+			var inte = 0;
+			function updateClock() {
+				var d = new Date();
+				inte = setTimeout(updateClock, 60000 - d.getTime() % 60000 + 100);
+				var dow = d.getDay();
+				var t1,t2,t3,t4;
+
+				var rmin = default_rmin;
+				var rmax = default_rmax;
+
+				switch (dow)
+				{
+				case 1: // monday
+				case 2: // tuesday
+				case 4: // thursday
+					t1 = 5.75;
+					t2 = 7.75;
+					break;
+				case 3: // wednesday
+				case 5: // friday
+					t1 = 6.25;
+					t2 = 8.5;
+					break;
+				case 6: // saturday
+				case 0: case 7: // sunday
+					t1 = 6.5;
+					t2 = 9;
+					break;
+				}
+				switch (dow)
+				{
+				case 0: case 7: // sunday
+				case 1: // monday
+				case 2: // tuesday
+				case 3: // wednesday
+				case 4: // thursday
+					t3 = 18;
+					t4 = 22;
+					break;
+				case 5: // friday
+				case 6: // saturday
+					t3 = 19  ;
+					t4 = 23.5;
+					t3 = 18;
+					t4 = 22;
+					break;
+				}
+				t1 *= 60;
+				t2 *= 60;
+				t3 *= 60;
+				t4 *= 60;
+				updateClock2(d.getHours(), d.getMinutes(), rmin, rmax, t1, t2, t3, t4);
+			}
+			function updateClock2(h,m, rmin, rmax, t1, t2, t3, t4) {
+				var s = "";
+				var hm;
+				var r;
+				var hString;
+				var mString;
+				var sString;
+				if (false)
+				{
+					s += (10 > d.getHours  () ? "0" : "") + d.getHours  () + ":";
+					s += (10 > d.getMinutes() ? "0" : "") + d.getMinutes();
+				}
+				else
+				{	s = "" + h + ":" + (m < 10 ? ("0" + m) : m);
+					hString = h.toString();
+					mString = (m < 10 ? ("0" + m) : m).toString();
+					sString = '<span class="firstdigit">' + hString.substring(0, 1) + '</span><span class="otherdigit">' +
+						hString.substring(1) + '</span><span id="poupinou" class="poupinou' +
+						(_red ? 'red' : 'black') +
+						'">&nbsp;</span><span class="firstdigit">' + 
+						mString.substring(0, 1) + '</span><span class="otherdigit">' +
+						mString.substring(1) + '</span>';
+					//console.log(sString);
+				}
+				hm = 60 * h + m;
+				rmin = rmin * 100;
+				rmax = rmax * 100;
+				if (hm < t1)
+				{	r = rmin;
+				}
+				else if (hm < t2)
+				{	r = rmin + Math.floor((hm - t1) / (t2 - t1) * (rmax - rmin));
+				}
+				else if (hm < t3)
+				{	r = rmax;
+				}
+				else if (hm < t4)
+				{	r = rmax - Math.floor((hm - t3) / (t4 - t3) * (rmax - rmin));
+				}
+				else
+				{	r = rmin;
+				}
+				if (false)
+				{
+					r = r.toString(16);
+					if (r.length == 1)
+					{	r = "0" + r;
+					}
+					r = "#" + r + "0000";
+				}
+				// textElem.style.color = r;
+				r = r / 100;
+				console.log(r);
+				textElem.style.opacity = r;
+				textElem.innerHTML = sString;
+				updateTextSize();
+			}
+			
+			function updateTextSize() {
+				var targetWidth = 1.0;  // Proportion of full screen width
+				var p = 1.0;
+				for (var i = 0; 3 > i; i++) {  // Iterate for better better convergence
+					if (false)
+					{
+					var newFontSize = textElem.parentNode.offsetWidth * targetWidth / textElem.offsetWidth * curFontSize;
+
+					textElem.style.fontSize = newFontSize.toFixed(3) + "pt";
+					curFontSize = newFontSize;
+					}
+					else
+					{
+
+					//var newFontSize = textElem.parentNode.offsetHeight * targetWidth / textElem.offsetHeight * curFontSize;
+					var newFontSize = Math.min(
+							document.documentElement.clientHeight * targetWidth / textElem.offsetHeight * curFontSize,
+							document.documentElement.clientWidth * targetWidth / textElem.offsetWidth * curFontSize
+							);
+					textElem.style.fontSize = newFontSize.toFixed(3) + "pt";
+					document.getElementById('poupinou').style.backgroundSize = 'auto ' + Math.round( p * textElem.offsetHeight) + 'px';
+					curFontSize = newFontSize;
+					}
+				}
+			}
+			var demo = function demo()
+			{
+				if (inte > 0)
+				{	clearTimeout(inte);
+					inte = 0;
+				}
+				var t1,t2,t3,t4;
+
+				var rmin = default_rmin;
+				var rmax = default_rmax;
+
+				t1 = 6 * 60;
+				t2 = 9 * 60;
+				t3 = 20 * 60;
+				t4 = 23 * 60;
+
+				var hnow;
+				var mnow;
+				var d = new Date();
+				hnow = d.getHours();
+				mnow = d.getMinutes();
+				var h = hnow;
+				var m = mnow;
+				function inner()
+				{
+					m = m + 1;
+					if (m >= 60)
+					{	m = 0;
+						h = h + 1;
+						if (h >= 24)
+						{	h = 0;
+						}
+					}
+					updateClock2(h, m, rmin, rmax, t1, t2, t3, t4);
+					var d = new Date();
+					hnow = d.getHours();
+					mnow = d.getMinutes();
+					if (h == hnow && m == mnow)
+					{
+						inte = setTimeout(updateClock, 1000);
+						return;
+					}
+					setTimeout(inner, 10);
+				}
+				inner();
+			}
+			
+			updateClock();
+			updateTextSize();
+			demo();
+			 //textElem.onclick = demo;
+			var _tog = 0;
+			var toggleBackground = function() 
+			{	_tog = 1 - _tog;
+				_red = 1 - _red;
+				if (_red)
+				{	textElem.className = 'clocktextred';
+				}
+				else
+				{	textElem.className = 'clocktextblack';
+				}
+				updateClock();
+				if (_tog)
+				{	go();
+				}
+			}
+
+function mr(
+                             phase1, phase2, phase3,
+                             center, width, i)
+  {
+    if (center == undefined)   center = 128;
+    if (width == undefined)    width = 127;
+
+       var red = Math.sin(i + phase1) * width + center;
+       var grn = Math.sin(i + phase2) * width + center;
+       var blu = Math.sin(i + phase3) * width + center;
+	//	   console.log(red, grn, blu);
+       var r = RGB2Color(red,grn,blu)
+	   return r;
+  }
+var b = 2 * Math.PI;
+var increment = 1 / 100;
+var _grad = 0;
+var go = function(i)
+{	if (!_tog)
+	{	
+		document.body.style.backgroundColor = '#000';
+		return;
+	}
+	_grad = _grad + increment;
+	if (_grad > b)
+	{	_grad = _grad - b;
+	}
+	//console.log(_grad);
+	document.body.style.backgroundColor = 	
+		mr(0,2,4, 35,35, _grad);
+	setTimeout(go, 200);
+}
+function RGB2Color(r,g,b)
+  {
+    return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+  }
+  function byte2Hex(n)
+  {
+    var nybHexString = "0123456789ABCDEF";
+    return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+  }
+			 textElem.onclick = toggleBackground;
+			window.addEventListener("resize", updateTextSize);
+		</script>
+	</body>
+</html>

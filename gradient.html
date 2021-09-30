@@ -1,0 +1,40 @@
+<html><body>
+</body>
+	<script type="text/javascript">
+function mr(
+                             phase1, phase2, phase3,
+                             center, width, i)
+  {
+    if (center == undefined)   center = 128;
+    if (width == undefined)    width = 127;
+
+       var red = Math.sin(i + phase1) * width + center;
+       var grn = Math.sin(i + phase2) * width + center;
+       var blu = Math.sin(i + phase3) * width + center;
+		   console.log(red, grn, blu);
+       var r = RGB2Color(red,grn,blu)
+	   return r;
+  }
+var b = 2 * Math.PI;
+var increment = 1 / 100;
+var go = function(i)
+{	i = i + increment;
+	if (i > b)
+	{	i = i - b;
+	}
+	//console.log(i);
+	document.body.style.backgroundColor = 	
+		mr(0,2,4, 125,125, i);
+	setTimeout(go.bind(window, i), 50);
+}
+function RGB2Color(r,g,b)
+  {
+    return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+  }
+  function byte2Hex(n)
+  {
+    var nybHexString = "0123456789ABCDEF";
+    return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+  }
+go(0);
+</script></html>
