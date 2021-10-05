@@ -265,6 +265,9 @@
 			demo();
 			 //textElem.onclick = demo;
 			var _tog = 0;
+			var refresh_site = function() 
+			{	location.replace('http://w.abc1.ch/clock/clock2.html');
+			}
 			var toggleBackground = function() 
 			{	_tog = 1 - _tog;
 				_red = 1 - _red;
@@ -321,7 +324,7 @@ function RGB2Color(r,g,b)
     var nybHexString = "0123456789ABCDEF";
     return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
   }
-			// textElem.onclick = toggleBackground;
+			textElem.onclick = refresh_site;
 			window.addEventListener("resize", updateTextSize);
 		</script>
 	</body>
